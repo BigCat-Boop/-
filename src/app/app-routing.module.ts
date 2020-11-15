@@ -10,7 +10,9 @@ import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { TagListComponent } from './tag-list/tag-list.component';
 import { TagNewComponent } from './tag-new/tag-new.component';
 import { TagEditComponent } from './tag-edit/tag-edit.component';
-import { LayoutComponent } from './layout/layout.component'
+import { LayoutComponent } from './layout/layout.component';
+import { importType } from '@angular/compiler/src/output/output_ast';
+import { AuthGuard } from './auth_guards.service'
 
 const routes: Routes = [
   {
@@ -21,6 +23,7 @@ const routes: Routes = [
   {
    path: 'contact',
    component: LayoutComponent,
+   canActivate: [AuthGuard],
    children: [
      {
        path: '',
@@ -29,7 +32,12 @@ const routes: Routes = [
      {
       path: 'new',
       component: ContactNewComponent
-    }]
+    },
+    {
+      path: 'edit/:id',
+      component: ContactEditComponent
+    }
+  ]
   },
     {
       path: 'tag',
@@ -65,6 +73,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

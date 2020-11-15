@@ -14,7 +14,7 @@
               <li><a href="#">Separated link</a></li>
             </ul>
           </div>
-          <a class="btn btn-success pull-right" href="contact-new.html">新增联系人</a>
+          <a class="btn btn-success pull-right" routerLink="/contact/new"  href="#">新增联系人</a>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -26,36 +26,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td><span class="label label-info">朋友</span></td>
-                <td>
-                  <a href="edit.html">编辑</a>
-                  <a href="#">删除</a>
-                </td>
-              </tr>
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td><span class="label label-success">家人</span></td>
-                <td>
-                  <a href="edit.html">编辑</a>
-                  <a href="#">删除</a>
-                </td>
-              </tr>
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td><span class="label label-primary">工作</span></td>
-                <td>
-                  <a href="edit.html">编辑</a>
-                  <a href="#">删除</a>
-                </td>
-              </tr>
+              <ng-container *ngFor="let item of contacts">
+                <tr>
+                  <td>{{item.name}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.phone}}</td>
+                  <td><span class="label label-info">朋友</span></td>
+                  <td>
+                    <a [routerLink]="['/contact/edit', item.id]">编辑</a>
+                    <a href="#" (click)="deleteContact(item.id, $event)">删除</a>
+                  </td>
+                </tr>
+              </ng-container>
             </tbody>
           </table>
         </div>

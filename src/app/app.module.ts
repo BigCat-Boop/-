@@ -16,7 +16,9 @@ import { TagEditComponent } from './tag-edit/tag-edit.component';
 import { LayoutComponent } from './layout/layout.component';
 import { FormsModule } from '@angular/forms'
 import { from } from 'rxjs';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { httpInterceptorProviders } from './index' 
+import { NoopInterceptor } from './global.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

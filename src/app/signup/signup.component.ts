@@ -30,6 +30,8 @@ export class SignupComponent implements OnInit {
     .toPromise()
     .then((data: any) => {
       this.email_err_msg = '';
+      window.localStorage.setItem('auth_token', data.token)
+      window.localStorage.setItem('user_info', JSON.stringify(data.user))
       this.router.navigate(['/'])
     }).catch(err => {
       if (err.status === 409) {

@@ -1,1 +1,18 @@
-<p>contact-new works!</p>
+        <h2 class="sub-header">新增联系人</h2>
+        <form (submit)="addContact()">
+          <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="email" class="form-control" id="name" placeholder="Name" [(ngModel)]="contact.name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="email">邮箱</label>
+            <input type="email" class="form-control" id="email" placeholder="Email"
+            [(ngModel)]="contact.email" name="email">
+          </div>
+          <div class="form-group">
+            <label for="phone">电话</label>
+            <input type="password" class="form-control" id="phone" placeholder="Phone"
+            [(ngModel)]="contact.phone" name="phone">
+          </div>
+          <button type="submit" class="btn btn-info">创建</button>
+        </form>
